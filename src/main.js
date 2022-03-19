@@ -10,7 +10,6 @@ import store from './store' //引入 Vuex 状态管理
 
 Vue.use(ElementUI) //使用elementUI
 
-
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
