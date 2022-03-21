@@ -12,6 +12,10 @@ Vue.use(ElementUI) //使用elementUI
 
 Vue.config.productionTip = false
 
+import { Network } from 'vue2vis';
+
+Vue.component("network", Network);
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

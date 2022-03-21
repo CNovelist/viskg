@@ -1,84 +1,86 @@
 <template>
-  <div id="mynetwork"></div>
+  <network id="network" 
+    ref="network" 
+    :nodes="nodes"
+    :edges="edges"
+    :options="options"
+    @click="handleClick">
+    </network>
 </template>
 
 <script>
-const vis = require("vis-network/dist/vis-network.min.js");
-require("vis-network/styles/vis-network.min.css");
-
-import network from "@/utils/network"
+import Opeations from "@/utils/opeations"
 
 export default {
-  name: 'VisNetWork',
+  name: 'Graph',
   data () {
     return {
-      nodes:[],
-      edges:[]
+      opeations:{},
+      edges: [],
+      nodes: [],
+      options: {
+        nodes:{
+          shadow: true,
+          shape: "dot",
+        },
+        edges: {
+            width: 1.25,
+            smooth: {
+                type: "dynamic",
+            },
+            arrows:{
+                to:{
+                    enabled: true,
+                    type:"arrow",
+                    scaleFactor: 0.3    //调整箭头的大小
+                }
+            }
+        },
+      },
+      interaction: {
+          hover: true,
+      },
+      physics: {
+        //enabled: false,
+        barnesHut:{
+            gravitationalConstant: -15000,
+            springLength: 100,
+            springConstant: 0.05,
+            avoidOverlap: 0,
+            //centralGravity: 0.3
+        },
+      },
+
     }
   },
   mounted(){
-      this.$store.dispatch("Graph").then(response=>{
-          // const container = document.getElementById('mynetwork');
-      
-          const nodes = new vis.DataSet(response.data.nodes);
-          const edges = new vis.DataSet(response.data.edges);
-
-          const data = {
-            nodes: nodes,
-            edges: edges
-          };
-
-          network(data);
-
-          // const options = {nodes:{
-          //       shadow: true,
-          //       shape: "dot",
-          //   },
-          //   edges: {
-          //       width: 1.25,
-          //       // physics: false,
-          //       smooth: {
-          //           type: "dynamic",
-          //       },
-          //       arrows:{
-          //           to:{
-          //               enabled: true,
-          //               type:"arrow",
-          //               scaleFactor: 0.3    //调整箭头的大小
-          //           }
-          //       }
-          //   },
-
-          //   interaction: {
-          //       hover: true,
-          //       //hoverConnectedEdges: true
-          //       //hideEdgesOnDrag: true,
-          //   },
-
-          //   physics: {
-          //       //enabled: false,
-          //       barnesHut:{
-          //           gravitationalConstant: -15000,
-          //           springLength: 100,
-          //           springConstant: 0.05,
-          //           avoidOverlap: 0,
-          //           //centralGravity: 0.3
-          //       },
-          //   },
-          //   };
-
-          // const network = new vis.Network(container, data, options);
-          
-      });
-
-      
+    this.$store
+      .dispatch("Graph")
+      .then(response=>{
+        this.nodes = response.data.nodes;
+        this.edges = response.data.edges;
+        this.opeations = new Opeations(this.$refs.network,this.nodes,this.edges);
+      })
   },
+  methods:{
+    handleClick(params){
+      if (params.nodes.length != 0) {
+        var clickNodeId = params.nodes[0];
+        //console.log(getSubNodes(clickNodeId));
+        if(this.opeations.getSubNodes(clickNodeId).length!=0){
+          this.opeations.removeNodes(clickNodeId);
+        }
+        else
+          this.opeations.addNodes(clickNodeId);
+      }
+    }
+  }
 
 }
 </script>
 
 <style scoped>
-  #mynetwork {
+  #network {
       width: 100%;
       height: 600px;
       border: 1px solid lightgray;

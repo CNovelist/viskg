@@ -11,12 +11,14 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "@vue2vis/network": "^1.0.1-alpha.78",
     "axios": "^0.26.1",
     "element-ui": "^2.15.6",
     "eslint": "^8.11.0",
     "jquery": "^3.6.0",
     "less-loader": "^10.2.0",
-    "vis-network": "^9.1.0",
+    "moment": "^2.29.1",
+    "vis-data": "^7.1.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
     "vue2vis": "0.0.18",
