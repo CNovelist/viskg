@@ -7,12 +7,13 @@ import router from './router'
 import ElementUI from 'element-ui' //element-ui的全部组件
 import 'element-ui/lib/theme-chalk/index.css'//element-ui的css
 import store from './store' //引入 Vuex 状态管理
+import { Network } from 'vue2vis';
 
 Vue.use(ElementUI) //使用elementUI
 
 Vue.config.productionTip = false
 
-import { Network } from 'vue2vis';
+
 
 Vue.component("network", Network);
 

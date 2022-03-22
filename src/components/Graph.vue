@@ -1,11 +1,14 @@
 <template>
-  <network id="network" 
-    ref="network" 
-    :nodes="nodes"
-    :edges="edges"
-    :options="options"
-    @click="handleClick">
-    </network>
+<div id="graph-container">
+    <network id="network" 
+        ref="network" 
+        :nodes="nodes"
+        :edges="edges"
+        :options="options"
+        @click="handleClick">
+        </network>
+  
+</div>
 </template>
 
 <script>
@@ -15,6 +18,7 @@ export default {
   name: 'Graph',
   data () {
     return {
+      value1: true,
       opeations:{},
       edges: [],
       nodes: [],
@@ -36,20 +40,27 @@ export default {
                 }
             }
         },
-      },
-      interaction: {
-          hover: true,
-      },
-      physics: {
-        //enabled: false,
-        barnesHut:{
-            gravitationalConstant: -15000,
-            springLength: 100,
-            springConstant: 0.05,
-            avoidOverlap: 0,
-            //centralGravity: 0.3
+        interaction: {
+            hover: true,
         },
+        physics: {
+          //enabled: false,
+          barnesHut:{
+              gravitationalConstant: -15000,
+              springLength: 100,
+              springConstant: 0.05,
+              avoidOverlap: 0,
+              centralGravity: 2
+          },
+        },
+        layout:{
+          hierarchical:{
+            enabled:false
+          }
+        }
+      
       },
+      
 
     }
   },
@@ -73,6 +84,18 @@ export default {
         else
           this.opeations.addNodes(clickNodeId);
       }
+    },
+    changeStyle(){
+      this.$forceUpdate();
+      // if(this.value==true){
+      //   this.$refs.network.options.layout.hierarchical.enabled=true;
+      //   this.value = false;
+      // }
+      // else{
+      //   this.$refs.network.options.layout.hierarchical.enabled=false;
+      //   this.value = true;
+      // }
+
     }
   }
 
@@ -80,10 +103,19 @@ export default {
 </script>
 
 <style scoped>
+
+  #graph-container{
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 10px;
+    height: 500px;
+    box-shadow: 1px 1px 10px gray;
+    background-color: white;
+  }
+
   #network {
-      width: 100%;
-      height: 600px;
-      border: 1px solid lightgray;
+      height: 500px;
+      /* border: 1px solid lightgray; */
   }
 </style>
 
