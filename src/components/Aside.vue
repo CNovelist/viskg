@@ -15,6 +15,7 @@
             <i class="el-icon-menu"></i>
             <span slot="title">知识管理</span>
         </el-menu-item>
+
         <el-menu-item index="2">
             <i class="el-icon-s-tools"></i>
             <span slot="title">其他功能</span>
@@ -29,7 +30,7 @@
         
     </el-row>
     <div style="position:relative;top:420px">
-      <span slot="title" style="color:white">Luo Lab<br/> DH University</span>
+      <span slot="title" style="color:white;font-family:'Times New Roman', Times, serif;">Luo Lab<br/> DH University</span>
     </div>
 </div>
 
@@ -59,5 +60,6 @@
         z-index: 1000;
         display: block;
         background-color: #24292F;
+        
     }
 </style>

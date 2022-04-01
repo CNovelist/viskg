@@ -10,6 +10,7 @@
                 <el-col :span="20">
                     <Header></Header>
                     <Graph></Graph>
+                    <Table></Table>
                 </el-col>
             </el-row>
         </div>
@@ -22,10 +23,11 @@
 import Graph from '../components/Graph'
 import Header from "../components/Header"
 import Aside from '../components/Aside.vue'
+import Table from '../components/Table.vue'
 
 export default {
   name: 'Home',
-  components: { Header, Aside,Graph},
+  components: { Header, Aside,Graph,Table},
   data () {
     return {
 
@@ -44,9 +46,5 @@ export default {
 <style>
     #content{
         margin: 0 auto;
-    }
-
-    #main{
-
     }
 </style>

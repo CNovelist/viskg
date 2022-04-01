@@ -57,4 +57,11 @@ export default function Opeations(network,staticNodes,staticEdges){
             //edges.add({from: clickNodeId,to: item});
         });
     }
+
+    this.addNodesByArr = function(arr,nodeid){
+        $.each(arr,(index,item)=>{
+            network.visData.nodes.add(item);
+            //network.visData.edges.add({from: nodeid,to: item.id});
+        })
+    }
 }
