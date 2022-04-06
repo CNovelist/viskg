@@ -16,9 +16,9 @@ export default function Netdata(nodes){
     }
 
     // 从节点列表中获取边数据
-    this.getEdges = function(){
+    this.getEdges = function(some_nodes){
         var edges = []
-        $.each(this.nodes,(index, item)=>{
+        $.each(some_nodes,(index, item)=>{
             if(item.pid!=-1){
                 edges.push({from:item.pid, to:item.id});
             };
@@ -59,7 +59,7 @@ export default function Netdata(nodes){
     }
 
     // 给每个节点设置value
-    this.setAllValue = function(){
+    this.setAllNodes = function(){
         $.each(this.nodes, (index, item)=>{
             if(item.pid == -1){
                 this.setValue(item, 10,0);

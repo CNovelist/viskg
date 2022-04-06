@@ -3,14 +3,12 @@
     <el-row class="tac">
         <el-col>
         <el-menu
-        default-active="1"
         class="el-menu-vertical-demo"
-        @open="handleOpen"
-        @close="handleClose"
         background-color="#24292F"
         text-color="#fff"
         active-text-color="#ffd04b"
-        style="border-right:0;">
+        style="border-right:0;"
+        @select="handleSelect">
         <el-menu-item index="1">
             <i class="el-icon-menu"></i>
             <span slot="title">知识管理</span>
@@ -18,7 +16,7 @@
 
         <el-menu-item index="2">
             <i class="el-icon-s-tools"></i>
-            <span slot="title">其他功能</span>
+            <span slot="title">关系管理</span>
         </el-menu-item>
         <el-menu-item index="3">
             <i class="el-icon-s-custom"></i>
@@ -38,12 +36,33 @@
 
 <script>
   export default {
+    data() {
+      return {
+        index: 1,
+        tag: 0
+      }
+    },
     methods: {
-      handleOpen(key, keyPath) {
-        console.log(key, keyPath);
-      },
-      handleClose(key, keyPath) {
-        console.log(key, keyPath);
+      handleSelect(key, keyPath) {
+        if(key==1 && this.tag!=1){
+          this.tag = 1;
+          this.$router.push({
+            path: "/nodes"
+          })
+        }
+        else if(key==2 && this.tag!=2){
+          this.tag = 2;
+          this.$router.push({
+            path: "/relations"
+          })
+        }
+        else if(key==3 && this.tag!=3){
+          this.tag = 3;
+          console.log(3);
+          this.$router.push({
+            path: "/team"
+          })
+        }
       }
     }
   }
