@@ -3,8 +3,9 @@
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"
             text-color="#000"
             active-text-color="#000"
+            background-color="#fff"
             style="border-bottom:0">
-            <el-menu-item id="home"  index="1" ><router-link to="/">智能制造知识图谱</router-link></el-menu-item>          
+            <el-menu-item id="home"  index="1" ><router-link to="/">中外智能制造</router-link></el-menu-item>          
         </el-menu>
     </div>
 
@@ -33,6 +34,7 @@ export default {
         font-size: 20px;
         color: black;
         font-family:'Courier New', Courier, monospace;
+        font-weight: bolder;
     }
     a{
         text-decoration: none;
